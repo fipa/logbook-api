@@ -44,7 +44,7 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-            
+
     - name: Deploy to Azure Container Instance
       uses: Azure/aci-deploy@v1
       with:
@@ -52,4 +52,5 @@ jobs:
         dns-name-label: ${{ secrets.AZURE_DNS_NAME_LABEL }}
         image: ${{ secrets.DOCKER_USERNAME }}/logbook-api:latest
         location: 'east us'
+        name: 'logbook-api'
         ports: 8080
