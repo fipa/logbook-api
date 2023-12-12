@@ -52,5 +52,5 @@ jobs:
         dns-name-label: ${{ secrets.AZURE_DNS_NAME_LABEL }}
         image: ${{ secrets.DOCKER_USERNAME }}/logbook-api:latest
         location: 'east us'
-        name: 'logbook-api'
+        name: 'logbook-apirest'
         ports: 8080
