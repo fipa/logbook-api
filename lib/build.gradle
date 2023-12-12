@@ -2,7 +2,6 @@ plugins {
     id 'org.springframework.boot' version '2.5.5'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
-    id 'com.heroku.sdk' version '2.0.6'
 }
 
 group = 'edu.fpoblete'
@@ -25,15 +24,10 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     
-     classpath 'com.heroku.sdk:heroku-gradle-plugin:2.0.6'
 }
 
 test {
     useJUnitPlatform()
-}
-
-task stage {
-	dependsOn build
 }
 
 sourceSets {
