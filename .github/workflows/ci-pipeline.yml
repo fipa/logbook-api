@@ -36,3 +36,16 @@ jobs:
         context: .
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/logbook-api:latest
+
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Deploy to Azure Container Instance
+      uses: azure/container-instances-deploy@v1
+      with:
+        resource-group: ${{ secrets.AZURE_RESOURCE_GROUP }}
+        dns-name-label: ${{ secrets.AZURE_DNS_NAME_LABEL }}
+        image: ${{ secrets.DOCKER_USERNAME }}/logbook-api:latest
+        ports: 8080
