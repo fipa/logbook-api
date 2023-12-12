@@ -42,6 +42,9 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+  test-login:
+    runs-on: ubuntu-latest
+    steps:
     - name: Deploy to Azure Container Instance
       uses: Azure/aci-deploy@v1
       with:
