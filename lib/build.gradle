@@ -8,7 +8,9 @@ group = 'edu.fpoblete'
 version = '1.0-SNAPSHOT'
 sourceCompatibility = '1.8'
 
-
+springBoot {
+	mainClassName = 'logbook.LogbookApplicationClass'
+}
 
 repositories {
     mavenCentral()
