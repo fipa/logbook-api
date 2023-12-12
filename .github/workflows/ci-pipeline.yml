@@ -51,3 +51,4 @@ jobs:
         location: 'east us'
         name: 'logbook-apirest'
         ports: 8080
+        restart-policy: OnFailure
