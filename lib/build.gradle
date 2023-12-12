@@ -23,8 +23,21 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    
 }
 
 test {
     useJUnitPlatform()
+}
+
+sourceSets {
+    main {
+        java { srcDir 'src/main/java' }
+        resources { srcDir 'src/main/resources' }
+    }
+
+    test {
+	    java { srcDir 'src/test/java' }
+        resources { srcDir 'src/test/resources' }
+    }
 }
