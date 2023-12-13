@@ -44,7 +44,6 @@ public class NoteServiceTest {
 
     @BeforeEach
     public void setup() {
-    	fail(); 
         notes = new ArrayList<>();
         n1 = new Note();
         n1.setId(1L);
