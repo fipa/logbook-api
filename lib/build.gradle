@@ -2,6 +2,8 @@ plugins {
     id 'org.springframework.boot' version '2.5.5'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id "jacoco"
+    id "org.sonarqube" version "3.5.0.2730"
 }
 
 group = 'edu.fpoblete'
@@ -39,5 +41,11 @@ sourceSets {
     test {
 	    java { srcDir 'src/test/java' }
         resources { srcDir 'src/test/resources' }
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
     }
 }
