@@ -40,15 +40,5 @@ public class NoteController {
     Note oneNote(@PathVariable Long id) throws Exception{
       return noteService.findOne(id);
     }
-    
-    @PutMapping("/notes/{id}")
-    Note replaceNote(@RequestBody Note newNote, @PathVariable Long id) {
-    	newNote.setTimestamp(LocalDateTime.now()); // podria ser un buen ejercicio, eliminar esta linea y que la prueba falle
-    	return noteService.replaceNote(newNote,id);
-    }
 
-    @DeleteMapping("/notes/{id}")
-    void deleteNote(@PathVariable Long id) {
-      noteService.deleteNote(id);
-    }
 }
