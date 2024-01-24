@@ -1,18 +1,14 @@
 package logbook.service;
 
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import logbook.domain.Note;
-
-import javax.annotation.PostConstruct;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class NoteService {
@@ -20,17 +16,14 @@ public class NoteService {
     @Autowired
     private NoteRepository noteRepository;
 
-    private List<Note> allNotes;
-
-    void setNoteRepository(NoteRepository noteRepository) {
+    public void setNoteRepository(NoteRepository noteRepository) {
         this.noteRepository = noteRepository;
     }
 
     public List<Note> findAll() {
-        return this.allNotes;
+        return (List<Note>) noteRepository.findAll();
     }
-    
-    
+        
     public Note findOne(Long id) throws Exception {
         return noteRepository.findById(id).orElseThrow(()->new Exception());
     }
@@ -40,6 +33,21 @@ public class NoteService {
         noteRepository.save(note);
         return note;
     }
+
+	public Map<String, Integer> getWords(String filter, Integer times) {
+		Map<String, Integer> words = new HashMap<String, Integer>();
+		
+		Iterable<Note> allNotes = noteRepository.findAll();
+		for (Note note : allNotes) {
+			String[] noteWords = note.getContent().split(" ");
+			for (String word : noteWords) {
+				words.put(word, 1);
+			}
+		}
+		
+		return words;
+	}
+
 
 
 }

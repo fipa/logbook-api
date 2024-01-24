@@ -1,32 +1,25 @@
 package logbook.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
 import logbook.domain.Note;
-import logbook.service.NoteRepository;
-import logbook.service.NoteService;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.fail;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -70,6 +63,37 @@ public class NoteServiceTest {
 
         noteService = new NoteService();
         noteService.setNoteRepository(noteRepositoryMock);
+    }
+    
+    @Test
+    public void findOneLanzaExcepcionCuandoElIdNoSeEncuentra()
+    {
+    	assertThrows(Exception.class, () -> noteService.findOne(10L));
+    }
+    
+    @Test
+    public void testAlCrearLaPrimeraNotaCadaPalabraEnElDiccionarioApareceUnaVez() {
+    	
+        Note n = new Note();
+        n.setId(1L);
+        n.setTitle("firstNote");
+        n.setContent("First note, with words java spring automation.");
+    	
+    	when(noteRepositoryMock.findAll()).thenReturn(Arrays.asList(n));
+    	
+   		Map<String, Integer> expected = new HashMap<String, Integer>();
+		expected.put("First", 1);
+		expected.put("note", 1);
+		expected.put("with", 1);
+		expected.put("words", 1);
+		expected.put("java", 1);
+		expected.put("spring", 1);
+		expected.put("automation", 1);
+  	  	
+		Map<String, Integer> words = noteService.getWords("",  0);
+    	assertEquals(expected.get("First"), words.get("First"));
+		
+		
     }
 
 }
