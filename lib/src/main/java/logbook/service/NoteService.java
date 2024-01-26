@@ -34,7 +34,7 @@ public class NoteService {
         return note;
     }
 
-	public Map<String, Integer> getWords(String filter) {
+	public Map<String, Integer> getWords() {
 		Map<String, Integer> words = new HashMap<String, Integer>();
 		
 		Iterable<Note> allNotes = noteRepository.findAll();

@@ -90,7 +90,7 @@ public class NoteServiceTest {
 		expected.put("spring", 1);
 		expected.put("automation", 1);
   	  	
-		Map<String, Integer> words = noteService.getWords("");
+		Map<String, Integer> words = noteService.getWords();
     	assertEquals(expected.get("First"), words.get("First"));
 	
     }
@@ -105,17 +105,8 @@ public class NoteServiceTest {
     	
     	when(noteRepositoryMock.findAll()).thenReturn(Arrays.asList(n));
     	
-   		Map<String, Integer> expected = new HashMap<String, Integer>();
-		expected.put("First", 1);
-		expected.put("note", 1);
-		expected.put("with", 1);
-		expected.put("words", 1);
-		expected.put("java", 2);
-		expected.put("spring", 1);
-		expected.put("automation", 1);
-  	  	
-		Map<String, Integer> words = noteService.getWords("");
-    	assertEquals(expected.get("java"), words.get("java"));
+		Map<String, Integer> words = noteService.getWords();
+    	assertEquals(2, words.get("java"));
 	
     }
 
