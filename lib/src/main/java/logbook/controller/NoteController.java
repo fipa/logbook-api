@@ -32,20 +32,20 @@ public class NoteController {
     public List<Note> allNotes() {
     	return noteService.findAll();
     }
-    
+    /*
     @PostMapping("/notes")
     Note newNote(@RequestBody Note newNote) {
-      return noteService.saveNote(newNote);
+      
     }
 
     @GetMapping("/notes/{id}")
     Note oneNote(@PathVariable Long id) throws Exception{
-      return noteService.findOne(id);
+      
     }
 
     @PutMapping("/notes/{id}")
     Note updateNote(@RequestBody Note note) {
-    	return noteService.saveNote(note);
+    	
     }
-    
+    */
 }
