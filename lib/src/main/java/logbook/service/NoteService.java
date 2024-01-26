@@ -34,14 +34,19 @@ public class NoteService {
         return note;
     }
 
-	public Map<String, Integer> getWords(String filter, Integer times) {
+	public Map<String, Integer> getWords(String filter) {
 		Map<String, Integer> words = new HashMap<String, Integer>();
 		
 		Iterable<Note> allNotes = noteRepository.findAll();
 		for (Note note : allNotes) {
 			String[] noteWords = note.getContent().split(" ");
 			for (String word : noteWords) {
-				words.put(word, 1);
+				if (words.containsKey(word)) {
+					words.put(word, words.get(word) + 1);
+				} else {
+					words.put(word, 1);	
+				}
+				
 			}
 		}
 		

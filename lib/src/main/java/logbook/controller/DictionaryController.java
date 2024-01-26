@@ -19,9 +19,8 @@ public class DictionaryController {
 
 	@GetMapping("dictionary")
 	public Map<String, Integer> getWords(
-			@RequestParam(name = "filter", required = false) String filter,
-			@RequestParam(name = "times", required = false) Integer times ) {
-		return noteService.getWords(filter, times);
+			@RequestParam(name = "filter", required = false) String filter) {
+		return noteService.getWords(filter);
 	}
 
 

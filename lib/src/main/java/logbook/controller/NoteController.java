@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +22,10 @@ public class NoteController {
 	@Autowired
     private NoteService noteService;
     
+	public NoteController(NoteService noteService) {
+		this.noteService = noteService;
+	}
+	
     // displays all notes
     @GetMapping("/notes")
     @ResponseBody
@@ -38,4 +43,9 @@ public class NoteController {
       return noteService.findOne(id);
     }
 
+    @PutMapping("/notes/{id}")
+    Note updateNote(@RequestBody Note note) {
+    	return noteService.saveNote(note);
+    }
+    
 }
